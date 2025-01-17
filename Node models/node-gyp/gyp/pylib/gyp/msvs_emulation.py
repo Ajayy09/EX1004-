@@ -1027,7 +1027,7 @@ def GenerateEnvironmentFiles(toplevel_build_dir, generator_flags,
     args = vs.SetupScript(arch)
     args.extend(('&&', 'set'))
     popen = subprocess.Popen(
-        args, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+        args, shell=False, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
     variables, _ = popen.communicate()
     env = _ExtractImportantEnvironment(variables)
 
@@ -1046,7 +1046,7 @@ def GenerateEnvironmentFiles(toplevel_build_dir, generator_flags,
     args = vs.SetupScript(arch)
     args.extend(('&&',
       'for', '%i', 'in', '(cl.exe)', 'do', '@echo', 'LOC:%~$PATH:i'))
-    popen = subprocess.Popen(args, shell=True, stdout=subprocess.PIPE)
+    popen = subprocess.Popen(args, shell=False, stdout=subprocess.PIPE)
     output, _ = popen.communicate()
     cl_paths[arch] = _ExtractCLPath(output)
   return cl_paths
