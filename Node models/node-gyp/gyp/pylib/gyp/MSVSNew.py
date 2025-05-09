@@ -5,9 +5,9 @@
 """New implementation of Visual Studio project generation."""
 
 import os
-import random
 
 import gyp.common
+import secrets
 
 # hashlib is supplied as of Python 2.5 as the replacement interface for md5
 # and other secure hashes.  In 2.6, md5 is deprecated.  Import hashlib if
@@ -22,7 +22,7 @@ except ImportError:
 
 
 # Initialize random number generator
-random.seed()
+secrets.SystemRandom().seed()
 
 # GUIDs for project types
 ENTRY_TYPE_GUIDS = {
